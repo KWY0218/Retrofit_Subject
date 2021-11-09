@@ -18,15 +18,26 @@ class MainActivity : AppCompatActivity() {
         val repository = Repository()
         val viewModelFactory = MainViewModelFactory(repository)
         viewModel = ViewModelProvider(this,viewModelFactory).get(MainViewModel::class.java)
-        viewModel.getPost()
+        viewModel.getStatusCode("statusCode")
+        viewModel.getBody("body")
+
         viewModel.myResponse.observe(this, Observer { response->
             if(response.isSuccessful){
-                Log.d("Response1",response.code().toString())
-                Log.d("Response1",response.body()?.version.toString())
-                Log.d("Response1",response.body()?.force.toString())
+                Log.d("Response1","status: "+response.body()?.statusCode.toString())
             }else{
-                Log.d("Response1",response.errorBody().toString())
-                Log.d("Response1",response.code().toString())
+                Log.d("Response1","status: "+response.errorBody().toString())
+                Log.d("Response1","status: "+response.code().toString())
+            }
+        })
+
+        viewModel.body.observe(this, Observer { response->
+            if(response.isSuccessful){
+                Log.d("Response1","force: "+response.body()?.bodyInForce.toString())
+                Log.d("Response1","version: "+response.body()?.bodyInVersion.toString())
+            }
+            else{
+                Log.d("Response1","body: "+response.errorBody().toString())
+                Log.d("Response1","body: "+response.code().toString())
             }
         })
     }
