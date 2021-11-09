@@ -3,13 +3,19 @@ package com.example.myapplication.model
 import com.google.gson.annotations.SerializedName
 
 data class StatusCode (
+     // "statusCode": 200
      @SerializedName("statusCode")
-     var statusCode:Int?
+     var statusCode:Int?,
+     // "body": {"version": 1.5, "force": true}
+     @SerializedName("body")
+     var body:Body = Body()
      )
 
-data class Body(
+class Body{
      @SerializedName("version")
-     var bodyInVersion:Long?,
+     var bodyInVersion:Float? = null
      @SerializedName("force")
-     var bodyInForce:String?
-)
+     var bodyInForce:Boolean? = null
+}
+
+

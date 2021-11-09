@@ -9,9 +9,6 @@ import retrofit2.http.Query
 interface SimpleApi {
 
     @GET("prod/version")
-    suspend fun getStatusCode(@Query("statusCode")s:String): Response<StatusCode>
-
-    @GET("prod/version")
-    suspend fun getBody(@Query("body")b:String):Response<Body>
+    suspend fun getStatusCode(): Response<StatusCode>
 
 }

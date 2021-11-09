@@ -12,19 +12,11 @@ import retrofit2.Response
 
 class MainViewModel (private val repository: Repository): ViewModel(){
     val myResponse:MutableLiveData<Response<StatusCode>> = MutableLiveData()
-    val body:MutableLiveData<Response<Body>> = MutableLiveData()
 
-    fun getStatusCode(s:String){
+    fun getStatusCode(){
         viewModelScope.launch {
-            val response = repository.getStatusCode(s)
+            val response = repository.getStatusCode()
             myResponse.value = response
-        }
-    }
-
-    fun getBody(b:String){
-        viewModelScope.launch {
-            val response = repository.getBody(b)
-            body.value = response
         }
     }
 }

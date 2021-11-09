@@ -6,11 +6,7 @@ import com.example.myapplication.model.StatusCode
 import retrofit2.Response
 
 class Repository {
-    suspend fun getStatusCode(s:String): Response<StatusCode> {
-        return RetrofitInstance.api.getStatusCode(s)
-    }
-
-    suspend fun getBody(b:String):Response<Body>{
-        return RetrofitInstance.api.getBody(b)
+    suspend fun getStatusCode(): Response<StatusCode> {
+        return RetrofitInstance.api.getStatusCode()
     }
 }
