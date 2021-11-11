@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.myapplication.model.Body
+import com.example.myapplication.model.LectureResult
 import com.example.myapplication.model.StatusCode
 import com.example.myapplication.repository.Repository
 import kotlinx.coroutines.launch
@@ -12,11 +12,19 @@ import retrofit2.Response
 
 class MainViewModel (private val repository: Repository): ViewModel(){
     val myResponse:MutableLiveData<Response<StatusCode>> = MutableLiveData()
+    val lectureList:MutableLiveData<Response<LectureResult>> = MutableLiveData()
 
     fun getStatusCode(){
         viewModelScope.launch {
             val response = repository.getStatusCode()
             myResponse.value = response
+        }
+    }
+
+    fun getHangangList(limit:Int,page:Int){
+        viewModelScope.launch {
+            val response = repository.getHangangList(limit,page)
+            lectureList.value = response
         }
     }
 }

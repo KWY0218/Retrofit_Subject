@@ -1,4 +1,5 @@
 package com.example.myapplication
 
-interface goActivity {
+interface GoActivity {
+    fun goActivity(id:Int?)
 }
