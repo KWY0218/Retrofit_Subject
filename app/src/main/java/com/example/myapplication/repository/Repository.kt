@@ -1,6 +1,7 @@
 package com.example.myapplication.repository
 
 import com.example.myapplication.api.RetrofitInstance
+import com.example.myapplication.model.LectureDetails
 import com.example.myapplication.model.LectureResult
 import com.example.myapplication.model.StatusCode
 import retrofit2.Response
@@ -12,5 +13,9 @@ class Repository {
 
     suspend fun getHangangList(limit:Int,page:Int): Response<LectureResult>{
         return RetrofitInstance.hangangApi.getHangangList(limit,page)
+    }
+
+    suspend fun getDetail(id:Int): Response<LectureDetails>{
+        return RetrofitInstance.hangangDetailsApi.getDetail(id)
     }
 }

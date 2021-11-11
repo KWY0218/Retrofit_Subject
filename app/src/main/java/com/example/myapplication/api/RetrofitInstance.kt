@@ -1,6 +1,7 @@
 package com.example.myapplication.api
 
 import com.example.myapplication.util.Constants.Companion.BASE_URL
+import com.example.myapplication.util.Constants.Companion.HANGANG_DETAILS_URL
 import com.example.myapplication.util.Constants.Companion.HANGANG_URL
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -27,12 +28,24 @@ object RetrofitInstance {
             .build()
     }
 
+    private val hangangDetailsInstance by lazy {
+        Retrofit.Builder()
+            .baseUrl(HANGANG_DETAILS_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(unsafeOkHttpClient().build())
+            .build()
+    }
+
     val api: SimpleApi by lazy {
         retrofit.create(SimpleApi::class.java)
     }
 
     val hangangApi by lazy{
         hangangInstance.create(SimpleApi::class.java)
+    }
+
+    val hangangDetailsApi by lazy{
+        hangangDetailsInstance.create(SimpleApi::class.java)
     }
 
     private fun unsafeOkHttpClient(): OkHttpClient.Builder {

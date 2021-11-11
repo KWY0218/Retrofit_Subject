@@ -73,7 +73,7 @@ class MainActivity: AppCompatActivity(),GoActivity {
 
     override fun goActivity(id: Int?) {
         val intent = Intent(this,LectureDetailsActivity::class.java)
-        intent.putExtra("id",id)
+        intent.putExtra("lecture_id",id)
         startActivity(intent)
     }
 }
