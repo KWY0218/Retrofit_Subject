@@ -13,12 +13,14 @@ interface SimpleApi {
     @GET("prod/version")
     suspend fun getStatusCode(): Response<StatusCode>
 
+    // lectures?limit=10&page=1
     @GET("lectures/")
     suspend fun getHangangList(
         @Query("limit")limit:Int,
         @Query("page")page:Int
     ): Response<LectureResult>
 
+    // lectures/21
     @GET("lectures/{id}")
     suspend fun getDetail(
         @Path("id")id:Int

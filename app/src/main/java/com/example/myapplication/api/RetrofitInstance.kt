@@ -19,6 +19,9 @@ object RetrofitInstance {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+    val api: SimpleApi by lazy {
+        retrofit.create(SimpleApi::class.java)
+    }
 
     private val hangangInstance by lazy {
         Retrofit.Builder()
@@ -26,6 +29,9 @@ object RetrofitInstance {
             .addConverterFactory(GsonConverterFactory.create())
             .client(unsafeOkHttpClient().build())
             .build()
+    }
+    val hangangApi by lazy{
+        hangangInstance.create(SimpleApi::class.java)
     }
 
     private val hangangDetailsInstance by lazy {
@@ -35,19 +41,11 @@ object RetrofitInstance {
             .client(unsafeOkHttpClient().build())
             .build()
     }
-
-    val api: SimpleApi by lazy {
-        retrofit.create(SimpleApi::class.java)
-    }
-
-    val hangangApi by lazy{
-        hangangInstance.create(SimpleApi::class.java)
-    }
-
     val hangangDetailsApi by lazy{
         hangangDetailsInstance.create(SimpleApi::class.java)
     }
 
+    // trustManager 해결
     private fun unsafeOkHttpClient(): OkHttpClient.Builder {
         val trustAllCerts = arrayOf<TrustManager>(object : X509TrustManager {
             override fun checkClientTrusted(
